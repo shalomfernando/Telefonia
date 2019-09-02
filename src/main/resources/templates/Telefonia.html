@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${message}">Shalom</div> <div th:each="ddd : ${dddTO}"> <td th:text="${dddTO.getDescricao()}"></td>
+    <td th:text="${dddTO.getRegiao()}"></td></div>
+
+<form action="/Telefone" method="post" >
+    <input type="text" name="Numero"/>
+    <button type="submit">Enviar</button>
+</form>
+</body>
+</html>

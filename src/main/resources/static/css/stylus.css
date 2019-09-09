@@ -1,0 +1,309 @@
+/* -----------CSS-------------- */
+body {
+    background: #b5b5b5;
+}
+
+.telefone-body {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    height: 450px;
+    width: 268px;
+    perspective: 1000px;
+}
+
+.telefone-body:before, .telefone-body:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 1.5px;
+    height: 98%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+.telefone-body:before {
+    left: 49%;
+}
+
+.telefone-body:after {
+    left: 51%;
+}
+
+.telhado1 {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 247px;
+    height: 18px;
+    background: #e10000;
+    z-index: -1;
+}
+
+.telhado2 {
+    position: absolute;
+    top: -43px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 225px;
+    height: 25px;
+    background: #eb0000;
+}
+
+.telhado3 {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-bottom: 17.5px solid #f50000; /*#00284b;*/
+    border-left: 105px solid transparent;
+    border-right: 105px solid transparent;
+    height: 0;
+    width: 20px;
+}
+
+.luz-end {
+    position: absolute;
+    top: -72.5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 31px;
+    height: 17.5px;
+    background: #f50000;
+}
+
+.luz {
+    position: absolute;
+    top: -95px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 27.5px;
+    height: 22.5px;
+    background: #e2e2ce;
+    box-shadow: 0px 0px 330px 36px #caca21;
+    z-index: 2;
+    animation: luz 4s linear 0s infinite forwards;
+}
+
+.luz:before, .luz:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #eb0000;
+}
+
+.luz:before {
+    left: 15%;
+}
+
+.luz:after {
+    right: 15%;
+}
+
+.luz-top {
+    position: absolute;
+    top: -109px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-bottom: 14.5px solid #e10000;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    height: 0;
+    width: 0;
+}
+
+.lado {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 28px;
+    height: 455px;
+    background: #eb0000;
+}
+
+.lado.esquerdo {
+    left: 0;
+}
+
+.lado.direito {
+    right: 0;
+}
+
+.chao {
+    position: absolute;
+    bottom: -23.5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 285px;
+    height: 18px;
+    background: #d20000;
+}
+
+.chao:before {
+    content: '';
+    border-bottom: 7.5px solid #820000;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    height: 0;
+    width: 94%;
+    position: absolute;
+    top: -7.5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.nome {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 233px;
+    height: 33.5px;
+    background: #000;
+    border: 4px solid #eb0000;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.nome span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 3.5px;
+}
+
+.porta {
+    position: absolute;
+    bottom: 2px;
+    width: 99px;
+    height: 412.5px;
+    background: #ff0000;
+}
+
+.porta.esquerdo {
+    left: 30px;
+}
+
+.porta.esquerdo:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -9px;
+    width: 9px;
+    height: 100%;
+    background: #ff0000;
+}
+
+.porta.direito {
+    right: 30px;
+    transform-origin: center right;
+    transform: rotateY(0deg);
+    /*animation: porta 30s linear 0s infinite forwards;*/
+}
+
+.porta-janela {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 69px;
+    height: 81px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border: 2.5px solid #ffffff;
+}
+
+.porta-janela:nth-child(1) {
+    top: 12.5px;
+}
+
+.janela {
+    background: #f7f7f9;
+    border: 2.5px solid #f7f7f9;
+}
+
+.janela-painel2 {
+    position: absolute;
+    left: 50%;
+    margin-top: 100px;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width: 69px;
+    height: 81px;
+    background: #d20000;
+    box-sizing: border-box;
+    border: 2.5px solid #820000;
+}
+.janela-painel3 {
+    position: absolute;
+    left: 50%;
+    margin-top: 200px;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width: 69px;
+    height: 81px;
+    background: #d20000;
+    box-sizing: border-box;
+    border: 2.5px solid #820000;
+}
+.janela-painel4 {
+    position: absolute;
+    left: 50%;
+    margin-top: 300px;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width: 69px;
+    height: 81px;
+    background: #d20000;
+    box-sizing: border-box;
+    border: 2.5px solid #820000;
+}
+
+.janela-painel:first-child, .janela-painel:nth-child(4) {
+    margin-left: 0;
+}
+
+.janela-painel:nth-child(n+4) {
+    margin-bottom: 0;
+}
+
+.telefone {
+    border: 1.5px solid #000;
+}
+
+.fechadura {
+    position: absolute;
+    top: 50%;
+    left: 6.5px;
+    transform: translate(0, -50%);
+    width: 1.5px;
+    height: 25px;
+    background: silver;
+}
+
+.fechadura.pequeno {
+    left: initial;
+    right: 3.5px;
+    width: 1px;
+    height: 15px;
+}
+
+
+/*-------------FUNÇÃO DA PORTA-------------*/
+
+@keyframes porta {
+    15% {
+        transform: rotateY(-62deg);
+    }
+    25% {
+        transform: rotateY(-62deg);
+    }
+}
+

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.util.Calendar;
 
 @Getter
@@ -16,7 +15,7 @@ public class TelefoneEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String Numero;
+    private String numero;
     private String DD;
     private Calendar horario;
 
@@ -27,13 +26,13 @@ public class TelefoneEntity {
 
     public TelefoneEntity(long id, String numero, String DD, Calendar horario) {
         this.id = id;
-        Numero = numero;
+        this.numero = numero;
         this.DD = DD;
         this.horario = horario;
     }
 
     public TelefoneEntity(SalvarTelefoneCommand command) {
-        this.Numero = command.getNumero();
+        this.numero = command.getNumero();
         this.DD = command.getNumero().length() == 10 ? getNumero().substring(0,2):
                 command.getNumero().length() == 15 ? getNumero().substring(6,7): "**";
         this.horario = Calendar.getInstance();

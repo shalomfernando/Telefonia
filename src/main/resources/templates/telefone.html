@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>telefone</title>
+    <link href="css/telefone.css" rel="stylesheet">
+    <script src="js/fontawesome.js"></script>
+</head>
+<body>
+<form action="/Telefone" method="post">
+
+<div class="telefone">
+    <div class="teclado">
+        <div class="contato">
+            <div class="avatar"><i class="fas fa-user-tie" style="font-size: 50px; margin-left: 15%"></i></div>
+            <div class="contato-info">
+                <div class="contato-nome">Victor</div>
+                <div class="contato-position">contato</div>
+                <div class="contato-numero">
+                    (123) 456 - 7890
+                </div>
+            </div>
+            <div class="contato-buttons">
+                <button class="icon-message"><i class="fas fa-comments"></i></button>
+                <button class="icon-video"><i class="fas fa-video"></i></button>
+            </div>
+        </div>
+
+        <div class="numero">
+            <input type="text" id="numero" name="numero">
+        </div>
+        <div class="digitos">
+            <div class="dig pound numero-digito" name="1">1</div>
+            <div class="dig numero-digito" name="2">2
+                <div class="sub-dig">ABC</div>
+            </div>
+            <div class="dig numero-digito" name="3">3
+                <div class="sub-dig">DEF</div>
+            </div>
+            <div class="dig numero-digito" name="4">4
+                <div class="sub-dig">GHI</div>
+            </div>
+            <div class="dig numero-digito" name="5">5
+                <div class="sub-dig">JKL</div>
+            </div>
+            <div class="dig numero-digito" name="6">6
+                <div class="sub-dig">MNO</div>
+            </div>
+            <div class="dig numero-digito" name="7">7
+                <div class="sub-dig">PQRS</div>
+            </div>
+            <div class="dig numero-digito" name="8">8
+                <div class="sub-dig">TUV</div>
+            </div>
+            <div class="dig numero-digito" name="9">9
+                <div class="sub-dig">WXYZ</div>
+            </div>
+            <div class="dig numero-digito asterisco" name="*">*</div>
+            <div class="dig numero-digito pound" name="0">0</div>
+            <div class="dig numero-digito pound" name="#">#</div>
+        </div>
+        <div class="digitos">
+            <div class="dig addContato acao-digito"><i class="fas fa-user-plus"
+                                                     style="margin-left: 10%; margin-top: 15%"></i></div>
+            <div class="dig-espaco"></div>
+            <div class="dig voltar acao-digito"><i class="fas fa-backspace"
+                                                  style="margin-top: 20%; margin-right: 4%"></i></div>
+
+
+        </div>
+    </div>
+    <div class="chamada">
+        <div class='pulsate'>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="ca-avatar"><i class="fas fa-user-tie" style="font-size: 82px; margin-left: 15%"></i></div>
+        <div class="ca-name">Victor</div>
+        <div class="ca-number">123 456 7890</div>
+        <div class="ca-status">Chamando</div>
+
+        <!--        Alteração do shalom-->
+
+        <div style="color: white" th:text="${message}">Shalom</div>
+
+        <div th:each="ddd : ${dddTO}"> <td th:text="${dddTO.getDescricao()}"></td>
+            <td th:text="${dddTO.getRegiao()}"></td></div>
+
+        <!--        fim alteração-->
+
+        <div class="ca-buttons">
+            <div class="ca-b-single" data-label="Add contato">
+                <i class="fas fa-user-plus"
+                   style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+            <div class="ca-b-single" data-label="Mudo">
+                <i class="fas fa-volume-mute" style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+            <div class="ca-b-single" data-label="Alto Falante">
+                <i class="fas fa-volume-up" style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+            <div class="ca-b-single" data-label="Face to Face">
+                <i class="fas fa-video" style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+            <div class="ca-b-single" data-label="Chat">
+                <i class="fas fa-comments" style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+            <div class="ca-b-single" data-label="Teclado">
+                <i class="fas fa-keyboard" style="margin-left: 14%; margin-top: 15%; font-size: 41px"></i>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="call acao-digito" >
+        <div class="call-change"><span></span></div>
+        <div class="call-icon"><i class="fas fa-phone-alt" style="margin-top: 25%"></i></div>
+    </div>
+
+    <input type="submit" th:value="sha">
+
+</div>
+</form>
+
+
+<script src="js/jquery-3.4.1.slim.js"></script>
+<script src="js/telefone.js"></script>
+</body>
+</html>

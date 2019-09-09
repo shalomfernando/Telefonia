@@ -21,7 +21,7 @@ public class TelefoniaController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView telefonia(Tel_dddTO dddTO, String message){
-        ModelAndView modelAndView =  new ModelAndView("Telefonia");
+        ModelAndView modelAndView =  new ModelAndView("telefone");
         if (dddTO != null) {
             modelAndView.addObject("dddTO", dddTO);
         }

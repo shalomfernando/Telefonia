@@ -10,5 +10,5 @@ import java.util.Calendar;
 @Setter
 public class SalvarTelefoneCommand {
 
-    private String Numero;
+    private String numero;
 }

@@ -1,5 +1,6 @@
 package br.edu.projectdefault.Domain.Handler;
 
+import br.edu.projectdefault.Domain.Commands.ValidaCommand.Outputs.Tel_dddTO;
 import br.edu.projectdefault.Domain.Entity.Tel_dddEntity;
 import br.edu.projectdefault.Domain.Entity.TelefoneEntity;
 import br.edu.projectdefault.Infrastructure.repository.Tel_dddRepository;
@@ -32,5 +33,9 @@ public class Tel_dddHandler {
             }
         }
         return tel_dddEntity ;
+    }
+
+    public List<Tel_dddTO> Handler(){
+         return Tel_dddTO.converte(_repository.findAll());
     }
 }

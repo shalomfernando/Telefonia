@@ -1,3 +1,26 @@
+var listEntityDDD = [];
+var listContato = [];
+
+$.ajax({
+    type: "GET",
+    url: "/Telefone/getDDD",
+    success: function(resultado){
+        // console.log(resultado);
+        listEntityDDD = resultado;
+        // console.log(listEntityDDD);
+    }
+});
+
+$.ajax({
+    type: "GET",
+    url: "/Contatos/get",
+    success: function(resultado){
+        // console.log(resultado);
+        listContato = resultado;
+        // console.log(listEntityDDD);
+    }
+});
+
 
 $('.numero-digito').click(function () {
 
@@ -67,7 +90,6 @@ $('.acao-digito').click(function () {
 });
 
 var timeCounterLoop = function () {
-
     if (timeCounterCounting) {
         setTimeout(function () {
             var timeStringSeconds = '';
@@ -130,51 +152,137 @@ var addAnimacaoAoBotao = function (thisButton) {
 
 var checkNumero = function () {
     var numberToCheck = $('.numero input').val();
-    var contatoVictor = {
-        name: 'Victor',
-        number: '123456789',
-        desc: 'Contato'
-    };
-    var contatoShalom = {
-        name: 'Shalom',
-        number: '0651985833',
-        desc: 'Contato'
-    };
+
+
+    //listEntityDDD.forEach()
+
+    //listContato.forEach()
 
     var contatoDesconhecido = {
-        name: 'Desconhecido',
-        number: document.getElementById("numero").value,
+        nome: 'Desconhecido',
+        numero: document.getElementById("numero").value,
         desc: 'Contato'
     };
 
-    if (numberToCheck.length > 0 && contatoVictor.number.substring(0, numberToCheck.length) == numberToCheck) {
+    console.log(listContato);
 
-        showUserInfo(contatoVictor);
-    } else if (numberToCheck.length > 0 && contatoShalom.number.substring(0, numberToCheck.length) == numberToCheck) {
-        showUserInfo(contatoShalom);
-    } else {
-        //hideUserInfo();
-        showUserInfo(contatoDesconhecido);
-    }
+        for (var x = 0; x < listContato.length; x++){
+             console.log(listContato[x]);
+            if (numberToCheck.length > 0 && listContato[x].numero.substring(0, numberToCheck.length) === numberToCheck) {
+                showUserInfo(listContato[x]);
+                break;
+            } else {
+                //hideUserInfo();
+                showUserInfo(contatoDesconhecido);
+            }
+           // break;
+        }
+
+
+    // var contatoVictor = {
+    //     name: 'Victor',
+    //     number: '123456789',
+    //     desc: 'Contato'
+    // };
+    //
+    // var contatoShalom = {
+    //     name: 'Shalom',
+    //     number: '0651985833',
+    //     desc: 'Contato',
+    //     local: 'Discagem ok : Inter'
+    //
+    // };
+    //
+    // if (numberToCheck.length > 0 && contatoVictor.number.substring(0, numberToCheck.length) === numberToCheck) {
+    //
+    //     showUserInfo(contatoVictor);
+    // } else if (numberToCheck.length > 0 && contatoShalom.number.substring(0, numberToCheck.length) === numberToCheck) {
+    //     showUserInfo(contatoShalom);
+    // } else {
+    //     //hideUserInfo();
+    //     showUserInfo(contatoDesconhecido);
+    // }
 };
 
 var showUserInfo = function (userInfo) {
-    $('.avatar').attr('style', "background-image: url(" + userInfo.image + ")");
+
+    console.log(userInfo);
+    //$('.avatar').attr('style', "background-image: url(" + userInfo.image + ")");
     if (!$('.contato').hasClass('showcontato')) {
         $('.contato').addClass('showcontato');
     }
-    $('.contato-nome').text(userInfo.name);
+    var tele;
+    tele = VerificadorDD(userInfo);
+    if(tele !== null){
+        $('.contato-nome').text(userInfo.nome);
+        $('.ca-number').text(userInfo.numero+'\n '+ tele.regiao);
+    }
+    else {
+        $('.contato-nome').text(userInfo.nome);
+        $('.ca-number').text(userInfo.numero);
+    }
     $('.contato-position').text(userInfo.desc);
     var matchedNumbers = $('.numero input').val();
-    var remainingNumbers = userInfo.number.substring(matchedNumbers.length);
-    $('.contato-numero').html("<span>" + matchedNumbers + "</span>" + remainingNumbers);
+    var remainingNumbers = userInfo.numero.substring(matchedNumbers.length);
 
-    $('.ca-avatar').attr('style', 'background-image: url(' + userInfo.image + ')');
-    $('.ca-name').text(userInfo.name);
-    $('.ca-number').text(userInfo.number);
+    $('.contato-numero').html("<span>" + matchedNumbers + "</span>" + remainingNumbers);
+    // $('.ca-avatar').attr('style', 'background-image: url(' + userInfo.image + ')');
+    $('.ca-name').text(userInfo.nome);
+
 
 };
 
 var hideUserInfo = function () {
     $('.contato').removeClass('showcontato');
 };
+
+// $('.acao-digito').click(function (){
+//     var numero = document.querySelector('#numero');
+//     numero = numero.value;
+//
+//     console.log(numero);
+//
+//     $.ajax({
+//          method: "GET",
+//          url: "/Telefone/Post",
+//          data: { nome: "Pedro", email: "pedro@email.com"}
+//      });
+//
+// });
+
+function VerificadorDD(telefonia) {
+    var tele = new Telefone();
+    //var lisTelefonia = [];
+    var ddd = telefonia.numero.length === 10 ? telefonia.numero.substr(0,2) : telefonia.numero.length === 15? telefonia.numero.substr(6,1):'';
+
+    if (telefonia.numero.length === 10){
+        for ( x in  listEntityDDD){
+            if(listEntityDDD[x].ddd.substr(0,2) === ddd){
+                tele.setDdd(ddd);
+                tele.setRegiao(listEntityDDD[x].regiao);
+                tele.setDescricao(listEntityDDD[x].descricao);
+                return tele;
+            }
+        }
+    }
+    else if (telefonia.numero.length === 15){
+        if (telefonia.numero.substr(0,2) ==='00'){
+            if (telefonia.numero.substr(2,2) === '21' || telefonia.numero.substr(2,2) === '15')  {
+                for ( x in  listEntityDDD) {
+                    if (listEntityDDD[x].ddd.substr(1, 1) === ddd) {
+                        tele.setDdd(ddd);
+                        tele.setRegiao(listEntityDDD[x].regiao);
+                        tele.setDescricao(listEntityDDD[x].descricao);
+                        return tele;
+                    }
+                }
+                    tele._regiao = 'Numero invalido';
+                    return tele;
+            }
+        }
+    }
+     else {
+         tele._regiao = 'Numero invalido';
+        return tele ;
+    }
+}
